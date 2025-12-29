@@ -51,9 +51,10 @@ Note: I think this is all hopefully I didn't forget anything.
 - **6. Authentication**
  Clients authenticate before using any service. Use a simple username/password mechanism to login.
 
-- **7. Per-Command Session Keys**
-The server assumes every request is a potential attack. To mitigate this, a unique Session Key is generated upon login and must be attached to every subsequent command packet.
-Which provides non-repudiation as well users cannot deny their actions on the server.
+- **7. Automatic Session Termination**
+Session Invalidation: Once the window expires, the current session key is purged. Rendering it useless for further commands.
+
+Mandatory Re-auth: Any subsequent request using the old key results in an ERROR: Session Expired response, which programmatically forces the client back to the login interface.
 
 - **8. Brute-Force Protection**
 The server enforces a strict 3-attempt limit for both initial logins and session key validations. Exceeding these limits results in an immediate socket termination.
