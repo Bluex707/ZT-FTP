@@ -5,7 +5,7 @@ This project presents a multi-threaded client–server file sharing application 
 ##  Group member names
 -Ayat Abueid ID:0229098
 
--Ahmad Allobani
+-Ahmad Allobani ID:0212693
 
 ## Prerequisites & Setup
 Before running the application, ensure the following requirements are met:
@@ -30,7 +30,7 @@ Ensure the following files are present in the project root for the "Zero-Trust" 
 
 Note: I think this is all hopefully I didn't forget anything.
 
-## Features and limitations
+## Features 
 
 - **1. Hybrid Cryptographic Framework**  
   Combines the security of RSA-2048 (Asymmetric) for identity verification and key exchange with the speed of AES-GCM-128 (Symmetric) for file data encryption.
@@ -52,9 +52,9 @@ Note: I think this is all hopefully I didn't forget anything.
  Clients authenticate before using any service. Use a simple username/password mechanism to login.
 
 - **7. Automatic Session Termination**
-Session Invalidation: Once the window expires, the current session key is purged. Rendering it useless for further commands.
+    Session Invalidation: Once the window expires, the current session key is purged. Rendering it useless for     further commands.
 
-Mandatory Re-auth: Any subsequent request using the old key results in an ERROR: Session Expired response, which programmatically forces the client back to the login interface.
+  Mandatory Re-auth: Any subsequent request using the old key results in an ERROR: Session Expired response,     which programmatically forces the client back to the login interface.
 
 - **8. Brute-Force Protection**
 The server enforces a strict 3-attempt limit for both initial logins and session key validations. Exceeding these limits results in an immediate socket termination.
@@ -80,3 +80,10 @@ The system stores only SHA-256 hashes of passwords. Even if the database file is
 - **15 .Remote File Operations**
 Users can list available files, upload new data, download existing files, and delete files from their assigned remote directory.
 
+## Limitaions 
+
+- User registration is not supported; all users are assumed to be pre-registered in the database.
+
+- The client is assumed to already possess a trusted server public key for verification.
+
+- No Cross-Session Synchronization. Log in as User on Terminal 1 and Terminal 2. Each receives a unique Session Key.
